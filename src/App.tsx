@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { withScreenShotTest } from "./main/withShot";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return withScreenShotTest(
+    [
+      {
+        component: () => <div>Hey there</div>,
+        title: 'It is a text',
+        id: 't1'
+      },
+      {
+        component: () => <div style={{height:100,width:130,backgroundColor:'lightgreen'}} />,
+        title: 'It is a div',
+        id: 't2'
+      }
+    ]
+  )
 }
 
 export default App;
