@@ -1,5 +1,5 @@
 export {
-  withScreenShotTest,
+  useScreenShotTest,
   defaultConfig,
   type ScreenshotConfig,
   type Components,
