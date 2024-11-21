@@ -8,7 +8,7 @@ Hit the button and the tests will run and a report will be generated in `test.ht
 ## Installation
 
 ```
-npm i react-screenshot-test
+npm i screenshot-test-react
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ npm i react-screenshot-test
 ```js
 import Component1 from '/path-to-component-1';
 import Component2 from '/path-to-component-2';
-import { useScreenShotTest } from 'react-screenshot-test';
+import { useScreenShotTest } from 'screenshot-test-react';
 
 const App = () => {
 

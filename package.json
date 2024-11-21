@@ -1,17 +1,17 @@
 {
-  "name": "react-screenshot-test",
+  "name": "screenshot-test-react",
   "version": "0.0.1",
   "main": "dist/main/index.js",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/Abhinandan-Kushwaha/react-screenshot-test",
+  "repository": "https://github.com/Abhinandan-Kushwaha/screenshot-test-react",
   "author": "Abhinandan Kushwaha <kushabhi5@gmail.com> (https://github.com/Abhinandan-Kushwaha)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Abhinandan-Kushwaha/react-screenshot-test/issues"
+    "url": "https://github.com/Abhinandan-Kushwaha/screenshot-test-react/issues"
   },
-  "homepage": "https://github.com/Abhinandan-Kushwaha/react-screenshot-test",
+  "homepage": "https://github.com/Abhinandan-Kushwaha/screenshot-test-react",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -61,8 +61,8 @@
     ]
   },
   "keywords": [
-    "react-screenshot-test",
-    "react-screenshot-testing",
+    "screenshot-test-react",
+    "screenshot-testing-react",
     "screenshot-testing",
     "screenshot-test",
     "react-snapshot-test",
