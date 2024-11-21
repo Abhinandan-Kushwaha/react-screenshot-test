@@ -1,46 +1,103 @@
-# Getting Started with Create React App
+The most straightforward UI testing library for react.
+Just wrap your UI component/widget inside `useScreenshotTest` and render it on your browser.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The browser will render your component/widget along with a button named <b>Capture and Compare</b>
 
-## Available Scripts
+Hit the button and the tests will run and a report will be generated in `test.html` file.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+```
+npm i react-screenshot-test
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Usage
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. In your project's `package.json`, under <i>scripts</i>, add-
 
-### `npm test`
+```js
+"scripts": {
+    ...
+    ...
+    "ss-test": "cd ./node_modules/screenshot-test-server/dist && node server.js" // add this
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Write your tests. Below is a sample test-
 
-### `npm run build`
+```js
+import Component1 from '/path-to-component-1';
+import Component2 from '/path-to-component-2';
+import { useScreenShotTest } from 'react-screenshot-test';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const App = () => {
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    const testComponents = [
+        {
+            component: Component1,
+            title: 'Component 1 details to be observed',
+            id: 'c1',
+        },
+        {
+            component: Component2,
+            title: 'Component 2 details to be observed',
+            id: 'c2',
+        },
+        ...
+    ];
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    const screenshotConfig = {
+        /* properties path, localhostUrl, port, quality etc (all optional) */
+    };
 
-### `npm run eject`
+    return useScreenShotTest(testComponents, screenshotConfig);
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. In your projects root directory, run-
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm run ss-test
+```
+This will start the test server.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Render your test component in your browser and press the <i>"Capture and Compare"</i> button. This will generate a folder named `ss-test` (or the path you provided in config) in your project's root directory.
 
-## Learn More
+5. Navigate to <i>ss-test</i> or <i> (or the path you provided in config)</i> folder  and open the file named `test.html` in your browser.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Props
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`useScreenShotTest` receives 2 parameters- Components array and ScreenshotConfig.
+
+#### ScreenshotConfig is defined as-
+
+```ts
+interface ScreenshotConfig {
+  path?: string; // path where screenshots should be saved, default: ss-test
+  localhostUrl?: string; // for web & iOS emulator it is http://127.0.0.1, for Android emulator it is http://10.0.2.2
+  port?: string; // port where test server should run, default: 8080
+  batchSize?: number; // number of tests to be processed at a time, default: 10
+  maxWidth?: number; // maxWidth to be used in html while rendering the captured screenshot, default: 500
+  backgroundColor?: string; // backgroundColor to be used in html while rendering the captured screenshot, default: transparent
+  showDiffInGrayScale?: boolean; // show diff image in grayScale? default: false
+  quality?: number; // quality (0 to 1) while capturing the screenshot, default: 0.9
+}
+```
+<b>Note:</b> all these properties are optional. In fact the second parameter to `useScreenShotTest` is entirely optional. When omitted, the library assigns the default values to each property.
+
+#### Components is an array where each item of the array has following properties-
+
+```ts
+interface Components {
+  component: (props?: any) => ReactElement;
+  title: string;
+  id: string;
+  description?: string;
+  showDiffInGrayScale?: boolean;
+  maxWidth?: number;
+  backgroundColor?: string;
+  quality?: number;
+}
+```
+<b>Note:</b> only the first 3 properties- `component`, `title` and `id` are required, rest are optional. 
