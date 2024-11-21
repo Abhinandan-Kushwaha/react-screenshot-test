@@ -124,7 +124,7 @@ export var useScreenShotTest = function (components, screenshotConfig) {
                         case 0:
                             currentViewshotRef = viewShotRefs[offset.current + index].current;
                             if (!currentViewshotRef) return [3 /*break*/, 3];
-                            return [4 /*yield*/, htmlToImage.toJpeg(currentViewshotRef)]; //currentViewshotRef.capture();
+                            return [4 /*yield*/, htmlToImage.toPng(currentViewshotRef)]; //currentViewshotRef.capture();
                         case 1:
                             res = _c.sent() //currentViewshotRef.capture();
                             ;
